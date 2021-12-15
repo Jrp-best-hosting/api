@@ -1,7 +1,13 @@
 /* Include Favicon.js by oxmc */
-var script=document.createElement("script");
-script.src="https://fjs.oxmc.xyz/favicon.min.js";
-document.head.appendChild(script);
+var faviconjs = document.querySelector("script[src~='https://fjs.oxmc.xyz/favicon.min.js']");
+if (!faviconjs) {
+  var faviconjs = document.querySelector("script[src~='http://fjs.oxmc.xyz/favicon.min.js']");
+  if (!faviconjs) {
+    faviconjs = document.createElement('script');
+    faviconjs.src="https://fjs.oxmc.xyz/favicon.min.js";
+    document.getElementsByTagName('head')[0].appendChild(faviconjs);
+  };
+};
 
 /* Main */
 function GetFav(hash) {
