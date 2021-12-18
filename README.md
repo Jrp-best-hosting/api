@@ -1,2 +1,2 @@
 # api
-A Api for easy communication between jrp servers, and your website.
+An Api for easy communication between jrp servers, and your website.
