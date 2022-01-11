@@ -19,6 +19,6 @@ This function gets the requested favicon's base64 value, example:
 <script src="http://api.jrp.best/api.js"></script>
 <script>
   var favb64 = GetFav('V1JmRzhJNkpBZHVXb0xuazMzb0paS2JRaFhtWjRhcnhLTnNyUmdvVTJOWT0=');
-  conaolr.log(favb64); // logs: 
+  console.log(favb64); // logs: 
 </script>
 ```
