@@ -36,21 +36,8 @@ async function GetB64File(accesskey, file) {
   return resp;
 };
 
-async function GetFav(hash) {
-  const res = await axios.get(`http://memefileserver.ml/jrp/favicon.php?hash=${hash}`);
-  document.dispatchEvent(JrpRespEvent);
-  var resp = res.data.image;
-  return resp;
-};
-
-async function setFav(hash) {
-  const res = await axios.get(`http://memefileserver.ml/jrp/favicon.php?hash=${hash}`);
-  document.dispatchEvent(JrpRespEvent);
-  favicon(res.data.image, "base64")
-};
-
 async function UploadFile(accesskey, file, fname) {
-  var filename = fname || 'unknown'
+  var filename = fname || 'unknown';
   const res = await axios.post(`https://jrpbest-files.givinghawk.repl.co/uploader.php`, {
     fileToUpload: file
   });
