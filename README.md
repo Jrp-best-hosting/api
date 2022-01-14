@@ -15,14 +15,15 @@ To use this api, include it in your head element:
 
 ## GetB64File(key, filename);
 
-This function gets the requested favicon's base64 value, example:
+This function gets the requested files base64 value, example:
 
 ```html
 <script src="http://api.jrp.best/minified_files/include-apis.min.js"></script>
 <script>
-  async function() {
+  async function jrpfav() {
     var favb64 = GetB64File(accesskey, 'favicon-jrp.best');
     console.log(favb64);
   };
+  jrpfav();
 </script>
 ```
