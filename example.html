@@ -1,4 +1,4 @@
-<link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="https://jrpbest-files.givinghawk.repl.co/assets/img/favicon.png" type="image/x-icon">
 <script src="https://jrpbest-files.givinghawk.repl.co/api/v1/include-apis.js"></script>
 <video id="videoViewer" controls autoplay>
   Your browser does not support HTML5 video.
@@ -11,6 +11,7 @@
 <audio id="audioViewer" controls></audio>
 <button onclick="ShowAudio();">Load Audio</button>
 <br>
+<button onclick="ChangeFav();">Change Favicon</button>
 <script>
   var accesskey = '24ae02-935031-a6a1d5-184192-833e3b';
   var video = document.getElementById("videoViewer");
@@ -45,6 +46,19 @@
   };
   async function Upload(file, filename) {
     var resp = await UploadFile(accesskey, file, filename);
-    console.log(resp.data);
+    if (resp.error == "True") {
+      throw new Error("JrpBest Servers say: "+resp.errreason);
+    } else {
+      console.log(resp);
+    };
+  };
+  async function ChangeFav() {
+    var resp = await GetB64File(accesskey, 'favicon-jrp.png');
+    if (resp.error == "True") {
+      throw new Error("JrpBest Servers say: "+resp.errreason);
+    } else {
+      console.log(resp.file);
+      favicon(resp.file);
+    };
   };
 </script>
