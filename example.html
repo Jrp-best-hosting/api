@@ -1,0 +1,50 @@
+<link rel="shortcut icon" href="../../assets/img/favicon.png" type="image/x-icon">
+<script src="https://jrpbest-files.givinghawk.repl.co/api/v1/include-apis.js"></script>
+<video id="videoViewer" controls autoplay>
+  Your browser does not support HTML5 video.
+</video>
+<button onclick="ShowVid();">Load Video</button>
+<br>
+<img id="imageViewer" alt="JrpBest Logo"></img>
+<button onclick="ShowImg();">Load Image</button>
+<br>
+<audio id="audioViewer" controls></audio>
+<button onclick="ShowAudio();">Load Audio</button>
+<br>
+<script>
+  var accesskey = '24ae02-935031-a6a1d5-184192-833e3b';
+  var video = document.getElementById("videoViewer");
+  var image = document.getElementById("imageViewer");
+  var audio = document.getElementById("audioViewer");
+  async function ShowVid() {
+    var resp = await GetB64File(accesskey, 'vrchat-splits.mp4');
+    if (resp.error == "True") {
+      throw new Error("JrpBest Servers say: "+resp.errreason);
+    } else {
+      video.src = resp.file;
+      video.autoplay = true;
+      video.play();
+    };
+  };
+  async function ShowImg() {
+    var resp = await GetB64File(accesskey, 'favicon-jrp.png');
+    if (resp.error == "True") {
+      throw new Error("JrpBest Servers say: "+resp.errreason);
+    } else {
+      image.src = resp.file;
+    };
+  };
+  async function ShowAudio() {
+    var resp = await GetB64File(accesskey, 'title.mp3');
+    if (resp.error == "True") {
+      throw new Error("JrpBest Servers say: "+resp.errreason);
+    } else {
+      audio.src = resp.file;
+      audio.play();
+    };
+  };
+  async function Upload(file, filename) {
+    var resp = await UploadFile(accesskey, file, filename);
+    console.log(resp.data);
+  };
+</script>
