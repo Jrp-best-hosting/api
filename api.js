@@ -1,21 +1,16 @@
 // jrp.best fileserver api, copyright 2022-2023 (c) by oxmc and Givinghawk
 // Distributed under an MIT license: https://jrpbest-files.givinghawk.repl.co/LICENSE
 
-/* Include Favicon.js by oxmc */
-var faviconjs = document.querySelector("script[src~='https://fjs.oxmc.xyz/favicon.min.js']");
-if (!faviconjs) {
-  var faviconjs = document.querySelector("script[src~='http://fjs.oxmc.xyz/favicon.min.js']");
-  if (!faviconjs) {
-    faviconjs = document.createElement('script');
-    faviconjs.src="https://fjs.oxmc.xyz/favicon.min.js";
-    document.getElementsByTagName('head')[0].appendChild(faviconjs);
-  };
+/* Check if axiox is included */
+if (!window.axios) {
+  // axios is not loaded
+  throw new Error("Axios is not loaded, please include it above this api script.");
 };
 
-/* Include axios for get requests */
-if (!favicon()) {
-  // axios is not loaded
-  throw new Error("favicon.js is not loaded, please include it above this api script.");
+/* Check if favicon.js is included */
+if (!window.favicon) {
+  // favicon.js is not loaded
+  throw new Error("Favicon.js is not loaded, please include it above this api script.");
 };
 
 /* Check if async/await is availible */
@@ -26,7 +21,7 @@ try {
   if (e instanceof SyntaxError)
     isAsync = false;
   else
-    throw new Error("Unable to use async/await, unable to use api");
+    throw new Error("Unable to use async/await, unable to use api.");
     /* throw e; // throws CSP error */
 }
 
@@ -35,8 +30,7 @@ var JrpRespEvent = new CustomEvent("JrpResponse", { "detail": "Response recived 
 
 /* Main Functions */
 async function GetB64File(accesskey, file) {
-  const res = await axios.get(`https://jrpbest-files.givinghawk.repl.co/api/v1/api.php?accesskey=${accesskey}&file=${file}`);
-  //console.log(res.data.file);
+  const res = await axios.get(`https://jrpbest-files.givinghawk.repl.co/api/v1/api.php?accesskey=${accesskey}&file=${file}&mode=get`);
   document.dispatchEvent(JrpRespEvent);
   var resp = res.data;
   return resp;
@@ -53,4 +47,14 @@ async function setFav(hash) {
   const res = await axios.get(`http://memefileserver.ml/jrp/favicon.php?hash=${hash}`);
   document.dispatchEvent(JrpRespEvent);
   favicon(res.data.image, "base64")
+};
+
+async function UploadFile(accesskey, file, fname) {
+  var filename = fname || 'unknown'
+  const res = await axios.post(`https://jrpbest-files.givinghawk.repl.co/uploader.php`, {
+    fileToUpload: file
+  });
+  document.dispatchEvent(JrpRespEvent);
+  var resp = res.data;
+  return resp;
 };
