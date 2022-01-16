@@ -1,7 +1,7 @@
 # api
 An Api for easy communication between jrp servers, and your website.
 
-[![Minimify api.js](https://github.com/Jrp-best-hosting/api/actions/workflows/auto-min.yaml/badge.svg)](https://github.com/Jrp-best-hosting/api/actions/workflows/auto-min.yaml)
+[![Minimify api.js](https://github.com/Jrp-best-hosting/api/actions/workflows/auto-min.yaml/badge.svg)](https://github.com/Jrp-best-hosting/api/actions/workflows/auto-min.yaml) [![pages-build-deployment](https://github.com/Jrp-best-hosting/api/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Jrp-best-hosting/api/actions/workflows/pages/pages-build-deployment)
 
 ## Use
 
