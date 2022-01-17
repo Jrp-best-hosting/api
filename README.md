@@ -21,7 +21,7 @@ This function gets the requested files base64 value, example:
 <script src="http://api.jrp.best/minified_files/include-apis.min.js"></script>
 <script>
   async function jrpfav() {
-    var favb64 = GetB64File(accesskey, 'favicon-jrp.best');
+    var favb64 = await GetB64File(accesskey, 'favicon-jrp.best');
     console.log(favb64);
   };
   jrpfav();
